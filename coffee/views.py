@@ -13,8 +13,8 @@ from django.views.generic import (
     CreateView, UpdateView, DeleteView
 )
 
-
-from coffee.models import Cafea, User
+from coffee.forms import CommentForm
+from coffee.models import Cafea, User, Comment
 # Create your views here.
 
 
@@ -27,7 +27,7 @@ def cafea_index(request):
     return render(request, 'cafea_index.html', context)
 
 def cafea_detail(request, pk):
-    cafea = Cafea.objects.get( pk=pk )
+    cafea = Cafea.objects.get( id = pk )
     context = {
         'cafea': cafea
     }
@@ -69,3 +69,31 @@ class LogoutView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect(reverse_lazy('cafea_index'))
+
+
+
+# @login_required
+# def comment_create(request, pk):
+#     if request.method == "POST":
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             book = Book.objects.get(id=pk)
+#             Comment.objects.create(
+#                 created_by=request.user,
+#                 book=book,
+#                 **form.cleaned_data
+#             )
+#             return redirect(reverse_lazy("book_detail", kwargs={"pk": pk}))
+
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    fields = ['text']
+
+    def form_valid(self, form):
+        cafea = Cafea.objects.get(id=self.kwargs['pk'])
+        Comment.objects.create(
+            created_by=self.request.user,
+            cafea=cafea,
+            **form.cleaned_data
+        )
+        return redirect(reverse_lazy("cafea_detail", kwargs={"pk": self.kwargs['pk']}))
