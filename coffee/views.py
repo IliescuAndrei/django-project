@@ -9,7 +9,7 @@ def cafea_index(request):
     }
     return render(request, 'cafea_index.html', context)
 
-def cafea_detail(request):
+def cafea_detail(request, pk):
     cafea = Cafea.objects.get( pk=pk )
     context = {
         'cafea': cafea

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+<h1>{{ cafea.title }}</h1>
+<div class="row">
+    <div class="col-md-8">
+        <img src="{% static cafea.image %}" alt="" width="100%">
+    </div>
+    <div class="col-md-4">
+        <h5>Despre ea:</h5>
+        <p>{{ cafea.description }}</p>
+        <br>
+        <h5>Perfecta pentru:</h5>
+        <p>{{ cafea.tip }}</p>
+    </div>
+</div>
+{% endblock %}
