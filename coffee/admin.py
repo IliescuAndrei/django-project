@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from coffee.models import Cafea
+
+@admin.register(Cafea)
+class CafeaAdmin(admin.ModelAdmin):
+    pass

@@ -1,0 +1,24 @@
+[
+    {
+        "model": "coffee.cafea",
+        "pk": 2,
+        "fields": {
+            "title": "Maximo",
+            "description": "Super cafea pentru super dimineti",
+            "tip": "Ibric",
+            "image": "img/cafea2.jpg"
+        }
+        
+    },
+    {
+        "model": "coffee.cafea",
+        "pk": 3,
+        "fields": {
+            "title": "Cafeto",
+            "description": "Cafeluta de dimineata",
+            "tip": "Filtru",
+            "image": "img/cafea3.jpg"
+        }
+        
+    }
+]
