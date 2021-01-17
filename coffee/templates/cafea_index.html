@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+ {% load static %}
+ {% block page_content %}
+ <h1>Cafele</h1>
+ <div class="row">
+ {% for cafea in cafele %}
+     <div class="col-md-4">
+         <div class="card mb-2">
+            <img class="card-img-top" src="{% static cafea.image %}">
+            <div class="card-body">
+                <h5 class="card-title">{{ cafea.title }}</h5>
+                <p class="card-text">{{ cafea.description }}</p>
+                <a href="{% url 'cafea_detail' cafea.pk %}"
+                   class="btn btn-primary">
+                    Afla mai multe
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

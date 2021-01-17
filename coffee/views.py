@@ -10,7 +10,7 @@ def cafea_index(request):
     return render(request, 'cafea_index.html', context)
 
 def cafea_detail(request):
-    cafea = Cafea.objects.get(pk=pk)
+    cafea = Cafea.objects.get( pk=pk )
     context = {
         'cafea': cafea
     }
